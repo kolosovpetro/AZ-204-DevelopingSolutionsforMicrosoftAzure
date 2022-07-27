@@ -25,8 +25,8 @@ namespace Api.Controllers
 
         private async Task<BlobContainerClient> GetCloudBlobContainer(string containerName)
         {
-            BlobServiceClient serviceClient = new BlobServiceClient(_options.StorageConnectionString);
-            BlobContainerClient containerClient = serviceClient.GetBlobContainerClient(containerName);
+            var serviceClient = new BlobServiceClient(_options.StorageConnectionString);
+            var containerClient = serviceClient.GetBlobContainerClient(containerName);
             await containerClient.CreateIfNotExistsAsync();
             return containerClient;
         }
@@ -35,18 +35,16 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> Get()
         {
-            BlobContainerClient containerClient = await GetCloudBlobContainer(_options.FullImageContainerName);
-            List<string> results = new List<string>();
-            await foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
+            var containerClient = await GetCloudBlobContainer(_options.FullImageContainerName);
+            var results = new List<string>();
+
+            await foreach (var blobItem in containerClient.GetBlobsAsync())
             {
-                results.Add(
-                    Flurl.Url.Combine(
-                        containerClient.Uri.AbsoluteUri,
-                        blobItem.Name
-                    )
-                );
+                var result = Flurl.Url.Combine(containerClient.Uri.AbsoluteUri, blobItem.Name);
+                results.Add(result);
             }
-            Console.Out.WriteLine("Got Images");
+
+            await Console.Out.WriteLineAsync("Got Images");
             return Ok(results);
         }
 
@@ -54,10 +52,10 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<ActionResult> Post()
         {
-            Stream image = Request.Body;
-            BlobContainerClient containerClient = await GetCloudBlobContainer(_options.FullImageContainerName);
-            string blobName = Guid.NewGuid().ToString().ToLower().Replace("-", String.Empty);
-            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+            var image = Request.Body;
+            var containerClient = await GetCloudBlobContainer(_options.FullImageContainerName);
+            var blobName = Guid.NewGuid().ToString().ToLower().Replace("-", string.Empty);
+            var blobClient = containerClient.GetBlobClient(blobName);
             await blobClient.UploadAsync(image);
             return Created(blobClient.Uri, null);
         }
