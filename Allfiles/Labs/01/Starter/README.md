@@ -25,5 +25,6 @@ Implementing solution:
 - `dotnet publish --configuration Release --output .\bin\publish`
 - `Compress-Archive .\bin\publish\* .\webapp.zip -Force`
 - `az webapp deployment source config-zip --resource-group "az204-01-rg" --src "webapp.zip" --name "imgwebpkolosov"`
+- `az group delete --name "az204-01-rg" --yes`
 
 ## Comments
