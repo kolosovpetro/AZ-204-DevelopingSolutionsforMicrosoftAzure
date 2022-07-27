@@ -17,8 +17,13 @@ Implementing solution:
 - `az appservice plan create --name "imagesserviceplan" --resource-group "az204-01-rg" --sku "F1"`
 - `az webapp list-runtimes`
 - `az webapp create --resource-group "az204-01-rg" --name "imgapipkolosov" --plan "imagesserviceplan" --runtime '"DOTNETCORE|3.1"'`
-- http://imgapipkolosov.azurewebsites.net/
+- https://imgapipkolosov.azurewebsites.net
 - `dotnet publish --configuration Release --output .\bin\publish`
 - `Compress-Archive .\bin\publish\* .\app.zip -Force`
+- `az webapp deployment source config-zip --resource-group "az204-01-rg" --src "app.zip" --name "imgapipkolosov"`
+- `az webapp create --resource-group "az204-01-rg" --name "imgwebpkolosov" --plan "imagesserviceplan" --runtime '"DOTNETCORE|3.1"'`
+- `dotnet publish --configuration Release --output .\bin\publish`
+- `Compress-Archive .\bin\publish\* .\webapp.zip -Force`
+- `az webapp deployment source config-zip --resource-group "az204-01-rg" --src "webapp.zip" --name "imgwebpkolosov"`
 
 ## Comments

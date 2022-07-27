@@ -15,7 +15,7 @@ namespace Api.Controllers
     public class ImagesController : ControllerBase
     {
         private HttpClient _httpClient;
-        private Options _options;
+        private readonly Options _options;
 
         public ImagesController(HttpClient httpClient, Options options)
         {
