@@ -9,62 +9,76 @@
     using System.IO;
     using Microsoft.Azure.Cosmos;
 
-    public class Program
+    public static class Program
     {
-        private const string EndpointUrl = "";
-        private const string AuthorizationKey = "";
+        private const string EndpointUrl = "https://polycosmospkolosov.documents.azure.com:443/";
+
+        private const string AuthorizationKey =
+            "Z7tIiG02AAJCrDoEMsrdPtJCsoqNxpupsRV2GRUlz0is9Gq6Al8LwRJqcJstlWl1eo7JIDC5f2Ny9T6nlazO2A==";
+
         private const string DatabaseName = "Retail";
         private const string ContainerName = "Online";
-        private const string PartitionKey = "";
-        private const string JsonFilePath = "";
+        private const string PartitionKey = "/Category";
 
-        static private int amountToInsert;
-        static List<Model> models;
+        private const string JsonFilePath =
+            "D:\\RiderProjects\\AZ-204-DevelopingSolutionsforMicrosoftAzure\\Allfiles\\Labs\\04\\Starter\\AdventureWorks\\AdventureWorks.Upload\\models.json";
 
-        static async Task Main(string[] args)
+        private static int _amountToInsert;
+        private static List<Model> _models;
+
+        private static async Task Main()
         {
             try
             {
                 // <CreateClient>
-                CosmosClient cosmosClient = new CosmosClient(EndpointUrl, AuthorizationKey, new CosmosClientOptions() { AllowBulkExecution = true });
+                var cosmosClient = new CosmosClient(EndpointUrl, AuthorizationKey,
+                    new CosmosClientOptions { AllowBulkExecution = true });
                 // </CreateClient>
 
                 // <Initialize>
                 Console.WriteLine($"Creating a database if not already exists...");
-                Database database = await cosmosClient.CreateDatabaseIfNotExistsAsync(Program.DatabaseName);
+                Database database = await cosmosClient.CreateDatabaseIfNotExistsAsync(DatabaseName);
 
                 // Configure indexing policy to exclude all attributes to maximize RU/s usage
                 Console.WriteLine($"Creating a container if not already exists...");
-                await database.DefineContainer(Program.ContainerName, PartitionKey)
+
+                try
+                {
+                    await database.DefineContainer(ContainerName, PartitionKey)
                         .WithIndexingPolicy()
-                            .WithIndexingMode(IndexingMode.Consistent)
-                            .WithIncludedPaths()
-                                .Attach()
-                            .WithExcludedPaths()
-                                .Path("/*")
-                                .Attach()
+                        .WithIndexingMode(IndexingMode.Consistent)
+                        .WithIncludedPaths()
                         .Attach()
-                    .CreateAsync();
+                        .WithExcludedPaths()
+                        .Path("/*")
+                        .Attach()
+                        .Attach()
+                        .CreateAsync();
+                }
+                catch (Exception)
+                {
+                }
+                
                 // </Initialize>
 
-                using (StreamReader reader = new StreamReader(File.OpenRead(JsonFilePath)))
+                using (var reader = new StreamReader(File.OpenRead(JsonFilePath)))
                 {
-                    string json = await reader.ReadToEndAsync();
-                    models = JsonSerializer.Deserialize<List<Model>>(json);
-                    amountToInsert = models.Count;
+                    var json = await reader.ReadToEndAsync();
+                    _models = JsonSerializer.Deserialize<List<Model>>(json);
+                    _amountToInsert = _models.Count;
                 }
 
                 // Prepare items for insertion
-                Console.WriteLine($"Preparing {amountToInsert} items to insert...");
+                Console.WriteLine($"Preparing {_amountToInsert} items to insert...");
 
                 // Create the list of Tasks
                 Console.WriteLine($"Starting...");
-                Stopwatch stopwatch = Stopwatch.StartNew();
+                var stopwatch = Stopwatch.StartNew();
                 // <ConcurrentTasks>
-                Container container = database.GetContainer(ContainerName);
+                var container = database.GetContainer(ContainerName);
 
-                List<Task> tasks = new List<Task>(amountToInsert);
-                foreach (Model model in models)
+                var tasks = new List<Task>(_amountToInsert);
+                foreach (var model in _models)
                 {
                     tasks.Add(container.CreateItemAsync(model, new PartitionKey(model.Category))
                         .ContinueWith(itemResponse =>
@@ -72,9 +86,11 @@
                             if (!itemResponse.IsCompletedSuccessfully)
                             {
                                 AggregateException innerExceptions = itemResponse.Exception.Flatten();
-                                if (innerExceptions.InnerExceptions.FirstOrDefault(innerEx => innerEx is CosmosException) is CosmosException cosmosException)
+                                if (innerExceptions.InnerExceptions.FirstOrDefault(
+                                        innerEx => innerEx is CosmosException) is CosmosException cosmosException)
                                 {
-                                    Console.WriteLine($"Received {cosmosException.StatusCode} ({cosmosException.Message}).");
+                                    Console.WriteLine(
+                                        $"Received {cosmosException.StatusCode} ({cosmosException.Message}).");
                                 }
                                 else
                                 {
@@ -89,7 +105,7 @@
                 // </ConcurrentTasks>
                 stopwatch.Stop();
 
-                Console.WriteLine($"Finished writing {amountToInsert} items in {stopwatch.Elapsed}.");
+                Console.WriteLine($"Finished writing {_amountToInsert} items in {stopwatch.Elapsed}.");
             }
             catch (Exception ex)
             {

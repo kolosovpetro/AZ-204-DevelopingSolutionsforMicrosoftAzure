@@ -21,21 +21,16 @@ namespace AdventureWorks.Web
 
             services.AddRouting(options => options.LowercaseUrls = true);
 
-            services.Configure<Settings>(
-                _configuration.GetSection(nameof(Settings))
-            );
+            services.Configure<Settings>(_configuration.GetSection(nameof(Settings)));
 
             ConfigureProductService(services);
         }
 
         public void ConfigureProductService(IServiceCollection services)
-        {            
-            services.AddScoped<IAdventureWorksProductContext, AdventureWorksCosmosContext>(provider =>
-    new AdventureWorksCosmosContext(
-        _configuration.GetConnectionString(nameof(AdventureWorksCosmosContext))
-    )
-);
-
+        {
+            services.AddScoped<IAdventureWorksProductContext, AdventureWorksCosmosContext>(
+                provider => new AdventureWorksCosmosContext(
+                    _configuration.GetConnectionString(nameof(AdventureWorksCosmosContext))));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,10 +38,7 @@ namespace AdventureWorks.Web
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
         }
     }
 }
