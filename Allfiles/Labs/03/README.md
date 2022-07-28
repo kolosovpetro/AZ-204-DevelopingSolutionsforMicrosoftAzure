@@ -6,6 +6,7 @@
 - `az storage container create --name "compressed-audio" --account-name "mediastorpkolosov" --public-access "off"`
 - `dotnet new console --name BlobManager --output .`
 - `dotnet add package Azure.Storage.Blobs --version 12.0.0`
+- `az group delete --name "az204-03-rg" --yes`
 
 # Notes
 
