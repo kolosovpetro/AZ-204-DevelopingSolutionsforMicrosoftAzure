@@ -16,7 +16,7 @@
 - `func extensions install --package Microsoft.Azure.WebJobs.Extensions.Storage --version 4.0.4`
 - `func azure functionapp publish funclogicpkolosov`
 - `httprepl https://funclogicpkolosov.azurewebsites.net`
-- `az group delete --name "az204-02-rg" --no-wait --yes`
+- `az group delete --name "az204-02-rg" --yes`
 
 # Reccuring patterns
 
