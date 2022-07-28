@@ -9,6 +9,7 @@
 - `az storage container create --name "images" --account-name "polystorpkolosov" --public-access "blob"`
 - Blob url: `https://polystorpkolosov.blob.core.windows.net/images`
 - `dotnet add package Microsoft.Azure.Cosmos --version 3.20.1`
+- `az group delete --name "az204-04-rg" --yes`
 
 # Notes
 
