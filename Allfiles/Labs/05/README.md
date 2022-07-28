@@ -1,0 +1,21 @@
+# Commands
+
+- `az group create --name "az204-05-rg" --location "centralus"`
+- `az vm create --resource-group "az204-05-rg" --name "quickvm" --image "Debian" --admin-username "razumovsky_r" --admin-password "DRebrEdrAru3#uCatoNA"`
+- `az vm show --resource-group "az204-05-rg" --name "quickvm"`
+- `az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm"`
+- `az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm" --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv`
+- `$ipAddress=$(az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm" --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv)`
+- `echo $ipAddress`
+- `ssh razumovsky_r@$ipAddress`
+- `uname -a`
+- `$registryName="pkolosovregistry"`
+- `az acr check-name --name $registryName`
+- `az acr create --resource-group "az204-05-rg" --name $registryName --sku "Basic"`
+- `az acr list`
+- `az acr list --query "max_by([], &creationDate).name" --output tsv`
+- `$acrName=$(az acr list --query "max_by([], &creationDate).name" --output tsv)`
+- `echo $acrName`
+- `az acr build --registry $acrName --image ipcheck:latest .`
+- `docker build -t vieux/apache:2.0 .`
+- `az group delete --name "az204-05-rg" --yes`
