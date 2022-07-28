@@ -10,6 +10,6 @@
 
 # Notes
 
-- <primary-blob-service-endpoint> is from Storage account blade, in the Settings section, select the Endpoints, copy the value of the Blob Service
-- <storage-account-name> is from Storage account blade, in the Security + networking section, select Access keys, copy the Storage account name
-- <key> is from Storage account blade, in the Security + networking section, select Access keys, select Show keys, copy the value of either of the Key boxes
+- `primary-blob-service-endpoint` is from Storage account blade, in the Settings section, select the Endpoints, copy the value of the Blob Service
+- `storage-account-name` is from Storage account blade, in the Security + networking section, select Access keys, copy the Storage account name
+- `key` is from Storage account blade, in the Security + networking section, select Access keys, select Show keys, copy the value of either of the Key boxes
