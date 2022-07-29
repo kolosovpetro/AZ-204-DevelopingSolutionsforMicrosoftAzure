@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId></UserSecretsId>
+    <UserSecretsId>aspnet-OIDCClient-95c57974-458a-4111-a7f1-c18617485098</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
