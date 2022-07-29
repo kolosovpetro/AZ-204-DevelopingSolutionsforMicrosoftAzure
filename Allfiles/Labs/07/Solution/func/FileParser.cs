@@ -11,8 +11,9 @@ public static class FileParser
     public static async Task<IActionResult> Run(
         [HttpTrigger("GET")] HttpRequest request)
     {
-        string connectionString = Environment.GetEnvironmentVariable("StorageConnectionString");
-        BlobClient blob = new BlobClient(connectionString, "drop", "records.json");
+        var connectionString = Environment.GetEnvironmentVariable("StorageConnectionString");
+        await Console.Out.WriteLineAsync(connectionString);
+        var blob = new BlobClient(connectionString, "drop", "records.json");
         var response = await blob.DownloadAsync();
         return new FileStreamResult(response?.Value?.Content, response?.Value?.ContentType);
     }

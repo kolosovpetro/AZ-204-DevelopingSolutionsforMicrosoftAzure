@@ -3,6 +3,6 @@
     "Values": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-        "StorageConnectionString": "[TEST VALUE]"
+        "StorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=securestorpkolosov;AccountKey=5l3a4kJ0T5PYJmyOV9s9vYyeQk0qqSqkzkbxwzawhZiIyPY2Puda/Fdd5fFLwFRuC0VM0NTCI8tE+AStaZ8Lgg==;EndpointSuffix=core.windows.net"
     }
 }
