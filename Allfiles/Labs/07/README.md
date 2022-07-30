@@ -18,3 +18,5 @@
 - `az group delete --name "az204-07-rg" --yes`
 
 # Notes
+
+- Due to difference in SDK core 3.1 of azure function and local azure tool >= 4.2 version -- azure function gives error 404
