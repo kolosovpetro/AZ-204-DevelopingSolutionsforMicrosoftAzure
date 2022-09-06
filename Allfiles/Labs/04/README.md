@@ -1,3 +1,8 @@
+# Lab 4: Construct a polyglot data solution (Develop solutions that use Cosmos DB storage)
+- Create azure cosmos db account
+- Create storage account (CLI)
+- Utilize azure cosmos db via SDK
+
 # Commands
 
 - `az group create --name "az204-04-rg" --location "centralus"`

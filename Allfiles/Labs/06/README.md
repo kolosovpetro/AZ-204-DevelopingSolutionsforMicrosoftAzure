@@ -1,3 +1,9 @@
+# Lab 6: Authenticate by using OpenID Connect, MSAL, and .NET SDKs (Implement user authentication and authorization)
+- Create active directory app using CLI
+- Create password profile using azure powershell
+- Get User principal name using azure powershell
+- Implement AD authorization usin MVC
+
 # Commands
 
 - `az group create --name "az204-06-rg" --location "centralus"`

@@ -1,4 +1,8 @@
-# Commands
+# Lab 7: Access resource secrets more securely across services (Implement secure cloud solutions)
+- Create keyvault using CLI
+- Setup azure function setting that taken from keyvault
+
+## Commands
 
 - `az group create --name "az204-07-rg" --location "centralus"`
 - `az storage account create --name "securestorpkolosov" --resource-group "az204-07-rg" --location "centralus" --sku "Standard_ZRS" --kind "StorageV2"`
@@ -17,6 +21,6 @@
 - `func azure functionapp publish "mynewfuncapppkolosov"`
 - `az group delete --name "az204-07-rg" --yes`
 
-# Notes
+## Notes
 
 - Due to difference in SDK core 3.1 of azure function and local azure tool >= 4.2 version -- azure function gives error 404

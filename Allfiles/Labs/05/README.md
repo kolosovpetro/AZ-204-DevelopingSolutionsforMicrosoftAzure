@@ -1,3 +1,12 @@
+# Lab 5: Deploy compute workloads by using images and containers (Implement IaaS solutions)
+- Create Debian virtual machine (CLI)
+- Get virtual machine ip address (CLI)
+- Connect to VM via SSH
+- Create azure container registry
+- Deploy azure container
+- Build azure container on behalf of azure container registry
+- Read container logs
+  
 # Commands
 
 - `az group create --name "az204-05-rg" --location "centralus"`

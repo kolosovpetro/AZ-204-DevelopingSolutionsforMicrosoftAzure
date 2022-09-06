@@ -1,3 +1,9 @@
+# Lab 2: Implement task processing logic by using Azure Functions (Implement Azure Functions)
+- Azure functions create (CLI)
+- Azure functions trigger types
+- Azure functions deployment
+- Recurring patterns (time based azure function trigger)
+
 # Commands
 
 - `az group create --name "az204-02-rg" --location "centralus"`

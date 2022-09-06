@@ -1,3 +1,9 @@
+# Lab 1: Build a web application on Azure platform as a service offering (Create Azure App Service Web Apps)
+  - Azure App Service
+  - Azure Storage
+  - Azure Container
+  - Read/Write files by two web applications
+  
 ## Commands
 
 Get a list of your subscriptions with the az account list command

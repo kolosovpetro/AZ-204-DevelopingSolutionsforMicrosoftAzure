@@ -1,3 +1,8 @@
+# Lab 3: Retrieve Azure Storage resources and metadata by using the Azure Storage SDK for .NET (Develop solutions that use blob storage)
+- Create azure blob storage account (CLI)
+- Create azure blob storage container (CLI)
+- Utilizing azure blob storage using SDK
+  
 # Commands
 
 - `az group create --name "az204-03-rg" --location "centralus"`

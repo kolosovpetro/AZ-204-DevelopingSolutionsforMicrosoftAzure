@@ -1,4 +1,8 @@
-# Commands
+# Lab 9: Publish and subscribe to Event Grid events (Develop event-based solutions)
+- Create event grid using CLI
+- Publish events using console app
+
+## Commands
 
 - `az --version`
 - `az --help`
@@ -14,4 +18,4 @@
 - `dotnet add package Azure.Messaging.EventGrid --version 4.1.0`
 - `az group delete --name "az204-09-rg" --yes`
 
-# Notes
+## Notes

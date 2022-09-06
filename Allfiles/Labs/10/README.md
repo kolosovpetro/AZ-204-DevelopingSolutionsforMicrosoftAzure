@@ -1,4 +1,10 @@
-# Commands
+# Lab 10: Asynchronously process messages by using Azure Service Bus Queues (Develop message-based solutions)
+- Create service bus namespace using CLI
+- Create service bus queue using CLI
+- Create console app message sender
+- Create console app message receiver
+
+## Commands
 
 - `az group create --name "az204-10-rg" --location "centralus"`
 - `az servicebus namespace create --name "pkolosovsbnamespace" --resource-group "az204-10-rg"`
@@ -9,6 +15,6 @@
 - `dotnet new console --name MessageReader --output .`
 - `az group delete --name "az204-10-rg" --yes`
 
-# Notes
+## Notes
 
 - `Message processing logics should be inside event handlers`
