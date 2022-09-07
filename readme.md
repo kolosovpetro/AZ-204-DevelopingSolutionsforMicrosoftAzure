@@ -11,6 +11,7 @@ Link: https://microsoftlearning.github.io/AZ-204-DevelopingSolutionsforMicrosoft
   - Azure Storage
   - Azure Container
   - Read/Write files by two web applications
+  - Azure App Service CLI deployment
 - **Lab 2**: Implement task processing logic by using Azure Functions (Implement Azure Functions)
   - Azure functions create (CLI)
   - Azure functions trigger types
