@@ -50,4 +50,6 @@ Link: https://microsoftlearning.github.io/AZ-204-DevelopingSolutionsforMicrosoft
   - Create console app message sender
   - Create console app message receiver
 - **Lab 11**: Monitor services that are deployed to Azure (Monitor and optimize Azure solutions)
+  - Powershell app service deploy
+  - App insight logging
 - **Lab 12**: Enhance a web application by using the Azure Content Delivery Network (Integrate caching and content delivery within solutions
