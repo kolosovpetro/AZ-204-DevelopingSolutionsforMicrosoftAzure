@@ -9,19 +9,19 @@
   
 # Commands
 
-- `az group create --name "az204-05-rg" --location "centralus"`
-- `az vm create --resource-group "az204-05-rg" --name "quickvm" --image "Debian" --admin-username "razumovsky_r" --admin-password "DRebrEdrAru3#uCatoNA"`
-- `az vm show --resource-group "az204-05-rg" --name "quickvm"`
-- `az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm"`
-- `az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm" --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv`
-- `$ipAddress=$(az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm" --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv)`
+- Create resource group: `az group create --name "az204-05-rg" --location "centralus"`
+- Create virtual machine: `az vm create --resource-group "az204-05-rg" --name "quickvm" --image "Debian" --admin-username "razumovsky_r" --admin-password "DRebrEdrAru3#uCatoNA"`
+- Get the details of a VM: `az vm show --resource-group "az204-05-rg" --name "quickvm"`
+- Get VM Ip address: `az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm"`
+- Get VM Ip address: `az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm" --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv`
+- Store VM Ip address to the variable: `$ipAddress=$(az vm list-ip-addresses --resource-group "az204-05-rg" --name "quickvm" --query '[].{ip:virtualMachine.network.publicIpAddresses[0].ipAddress}' --output tsv)`
 - `echo $ipAddress`
 - `ssh razumovsky_r@$ipAddress`
 - `uname -a`
 - `$registryName="pkolosovregistry"`
-- `az acr check-name --name $registryName`
+- Check that ACR name available: `az acr check-name --name $registryName`
 - `az acr create --resource-group "az204-05-rg" --name $registryName --sku "Basic"`
-- `az acr list`
+- Lists all the container registries under the current subscription: `az acr list`
 - `az acr list --query "max_by([], &creationDate).name" --output tsv`
 - `$acrName=$(az acr list --query "max_by([], &creationDate).name" --output tsv)`
 - `echo $acrName`
